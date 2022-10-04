@@ -4,25 +4,13 @@ session_start();
 
 include 'functions.php';
 
-// apabila form melakukan post maka function dijalankan
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = htmlspecialchars($_POST['username']);
-    $pass = htmlspecialchars($_POST['password']);
-    $sql_login = $conn->query("SELECT * FROM user
-                                         WHERE 
-                                         BINARY username='$username' 
-                                         AND BINARY password='$pass'
-                                        ");
-
-    $data = $sql_login->fetch_assoc();
-    $cek = $sql_login->num_rows;
-
-    if ($cek > 0) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['password'] = $data['password'];
-        header('location: ../index.php');
+if (isset($_POST['login'])) {
+    if (login($_POST) > 0) {
+        echo "<script>
+                document.location.href = '../index.php';
+              </script>";
     } else {
-        header('location: login.php?gagal');
+        echo mysqli_error($conn);
     }
 }
 ?>
@@ -69,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <section class="vh-100">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="assets/img/login-img.jpg" class="img-fluid" alt="Sample image">
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <div class="col-md-3 col-lg-3 col-xl-5">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="../assets/img/login.jpg" class="img-fluid" alt="Sample image" width="250px">
+                    </div>
                     <form action="" method="post">
                         <?php if (isset($_GET['gagal'])) { ?>
                             <tr>
@@ -96,21 +84,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Enter password" name="password" required />
                         </div>
 
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <div class="text-center text-lg-start mt-4 pt-2 ">
+                                <button type="submit" name="login" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                            </div>
 
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                            <!-- make text dont have any account yet? -->
+                            <div class="text-center text-lg-start pt-2 ">
+                                <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="registrasi.php" class="link-danger">Register</a></p>
+                            </div>
                         </div>
                     </form>
 
                 </div>
             </div>
-            <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-                <!-- Copyright -->
-                <div class="text-white mb-3 mb-md-0">
-                    Copyright © 2022. All rights reserved.
-                </div>
-                <!-- Copyright -->
-            </div>
+            
     </section>
 
     <!-- Link Jquery -->

@@ -48,7 +48,7 @@ if (isset($_POST['cari'])) {
     <marquee behavior="alternate" direction=""><h1>DAFTAR SISWA XII RPL 3</h1></marquee>
 
     
-    <form action="" method="post" class="mb-3">
+    <form action="" method="post" class="mb-3 mt-4">
         <a href="php/tambah.php" class="btn btn-success" role="button">Tambah Data</a>
         <input class="form-control w-25 me-1 ms-2 d-inline float-right" width="30" type="search" autofocus="" placeholder="Cari.." autocomplete="off" id="keyword" name="keyword">
         <button class="btn btn-outline-success" type="submit" id="tombol-cari" name="cari">Cari</button>
@@ -56,6 +56,9 @@ if (isset($_POST['cari'])) {
         <!-- if session login is true  -->
         <?php if (isset($_SESSION['username'])) { ?>
             <a href="php/logout.php" class="btn btn-danger float-end" role="button">Logout</a>
+            <div class="p-2 me-2 float-end">
+                <?= $_SESSION['username'] ?>
+            </div>
         <?php } else { ?>
             <a href="php/registrasi.php" class="btn btn-primary kiri-form" role="button">Registrasi</a>
             <a href="php/login.php" class="btn btn-primary kiri-form" role="button">Login</a>
