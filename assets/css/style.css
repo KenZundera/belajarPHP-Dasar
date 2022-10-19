@@ -168,6 +168,7 @@ form .error {
 table {
     width: 100%;
     color: #fff;
+    margin-bottom: 2rem;
 }
 
 table tr {
@@ -302,6 +303,34 @@ input[type="password"] {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+input[type="number"] {
+    background-color: #2D3135;
+    color: #fff;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.375rem;
+    padding: 6px 12px 6px 12px;
+    width: 100%;
+    margin: 0px 4px 10px 0px;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+select {
+    background-color: #2D3135;
+    color: #fff;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.375rem;
+    padding: 6px 12px 6px 12px;
+    width: 100%;
+    margin: 0px 4px 10px 0px;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
 /* make class container centered */
 .container {
     width: 50%;
@@ -311,4 +340,5 @@ input[type="password"] {
 
 header {
     margin: 0px 0px 0px 15px;
+    
 }

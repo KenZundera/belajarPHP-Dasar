@@ -23,19 +23,148 @@ if (isset($_POST['tambah'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Siswa Kelas</title>
 
-    <!-- Link Bootstrap
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- Link Font Awesome -->
     <script src="https://kit.fontawesome.com/92333b2848.js" crossorigin="anonymous"></script>
 
     <style>
-        body {
-            /* make neon background circle */
-            background: radial-gradient(circle, #0D0D0D, #030BA6, #040FD9, #1B0273, #580259);
-            background-repeat: no-repeat;
-            background-size: 100% 200%;
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .h-custom {
+            height: calc(100% - 73px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
             color: #fff;
+            text-align: center;
+            margin: 1.25rem 0 2rem 0;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            margin: 0rem auto;
+            border-radius: 5px;
+            font-size: 1rem;
+            padding: 1.25rem;
+            box-shadow: #fff 0 0 10px;
+            margin-bottom: 5rem;
+        }
+
+        form ul {
+            list-style: none;
+        }
+
+        form ul li {
+            margin-bottom: 10px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.375rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        form input:last-child {
+            margin-bottom: 10px;
+        }
+
+        form input:focus {
+            outline: none;
+            box-shadow: #90c6fd 0px 0 5px 2px;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;	
+        }
+
+        form input::placeholder {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        form .flex-footer .footer .tbl-tambah{
+            width: 45%;
+            height: 40px;
+            padding: 0.375rem 0.75rem;
+            border: 0;
+            border-radius: 5px;
+            background-color: #0d6efd;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        form .flex-footer .footer .tbl-hapus{
+            width: 45%;
+            height: 40px;
+            border: 0;
+            border-radius: 5px;
+            background-color: #dc3545;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            text-align: center;
+            box-sizing: border-box;
+            text-decoration:none;
+        }
+
+        form .tbl-hapus:hover{
+            background-color: #c42e3d;
+        }
+
+        form .tbl-tambah:hover {
+            background-color: #1b82e9;
+        }
+
+        form .error {
+            color: #ff0000;
+            font-size: 12px;
+        }
+
+        .data-nf {
+            /* make class data-nf alert danger */
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px;
+            margin: 0px 0px 20px 0px;
+            border-radius: 0.375rem;
+            max-width: 100%;
+        }
+
+        @media (max-width: 450px) {
+            .h-custom {
+                height: 100%;
+            }
+        }
+
+        img {
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -76,7 +205,6 @@ if (isset($_POST['tambah'])) {
                 <option value="XII DKV 1">XII DKV 1</option>
                 <option value="XII DKV 2">XII DKV 2</option>
                 <option value="XII ANM 3">XII ANM 3</option>
-
             </select>
         </li>
         <li>
@@ -104,13 +232,14 @@ if (isset($_POST['tambah'])) {
             <label for="nama_bapak">Nama Bapak :</label>
             <input type="text" name="nama_bapak" id="nama_bapak" required>
         </li>
-        <li>
-            <button type="submit" name="tambah">Tambah Data</button>
-        </li>
+        <div class="flex-footer">
+                <div class="footer">
+                    <button type="submit" name="tambah" class="tbl-tambah">Tambah</button>
+                    <a href="../index.php" class="tbl-hapus" role="button">Kembali
+                    </a>
+                </div>
+            </div>
       </ul>
     </form>
-    
-    <!-- Link Jquery -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
