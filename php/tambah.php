@@ -23,8 +23,8 @@ if (isset($_POST['tambah'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Siswa Kelas</title>
 
-    <!-- Link Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Link Bootstrap
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"> -->
 
     <!-- Link Font Awesome -->
     <script src="https://kit.fontawesome.com/92333b2848.js" crossorigin="anonymous"></script>
@@ -54,11 +54,39 @@ if (isset($_POST['tambah'])) {
         </li>
         <li>
             <label for="kelas">Kelas :</label>
-            <input type="text" name="kelas" id="kelas" required>
+            <!-- <input type="text" name="kelas" id="kelas" required> -->
+            <select name="jenis_kelamin" id="jenis_kelamin">
+                <option value="" disabled selected>Pilih Kelas</option>
+                <option value="X RPL">X RPL</option>
+                <option value="X ANM">X ANM</option>
+                <option value="X DKV">X DKV</option>
+                <option value="XI RPL 1">XI RPL 1</option>
+                <option value="XI RPL 2">XI RPL 2</option>
+                <option value="XI RPL 2">XI RPL 2</option>
+                <option value="XI ANM 1">XI ANM 1</option>
+                <option value="XI ANM 2">XI ANM 2</option>
+                <option value="XI DKV 1">XI DKV 1</option>
+                <option value="XI DKV 2">XI DKV 2</option>
+                <option value="XII RPL 1">XII RPL 1</option>
+                <option value="XII RPL 2">XII RPL 2</option>
+                <option value="XII RPL 3">XII RPL 3</option>
+                <option value="XII ANM 1">XII ANM 1</option>
+                <option value="XII ANM 2">XII ANM 2</option>
+                <option value="XII ANM 3">XII ANM 3</option>
+                <option value="XII DKV 1">XII DKV 1</option>
+                <option value="XII DKV 2">XII DKV 2</option>
+                <option value="XII ANM 3">XII ANM 3</option>
+
+            </select>
         </li>
         <li>
             <label for="jenis_kelamin">Jenis Kelamin :</label>
-            <input type="text" name="jenis_kelamin" id="jenis_kelamin" required>
+            <!-- <input type="text" name="jenis_kelamin" id="jenis_kelamin" required> -->
+            <select name="jenis_kelamin" id="jenis_kelamin">
+                <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                <option value="L">L</option>
+                <option value="P">P</option>
+            </select>
         </li>
         <li>
             <label for="alamat">Alamat :</label>

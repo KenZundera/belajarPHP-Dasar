@@ -92,7 +92,7 @@ function registrasi($data)
 {
     global $conn;
 
-    $username = mysqli_real_escape_string($data['username']);
+    $username = strtolower(stripslashes($data['username']));
     $password = mysqli_real_escape_string($conn, $data['password']);
     $password2 = mysqli_real_escape_string($conn, $data['password2']);
 
@@ -128,41 +128,34 @@ function registrasi($data)
     return mysqli_affected_rows($conn);
 }
 
-function login($data)
-{
-    global $conn;
+// function login($data)
+// {
+//     global $conn;
 
-    $user = $conn->query('SELECT * FROM user');
-    // foreach ($user as $row) {
-    //     if ($row['username'] == $data['username']) {
-    //         if (password_verify($data['password'], $row['password'])) {
-    //             $_SESSION['login'] = true;
-    //             header('Location: ../index.php');
-    //             exit();
-    //         }
-    //     }
-    // }
-    foreach ($user as $row) {
-        $pass = $row['password'];
-    }
+//     $user = $conn->query('SELECT * FROM user');
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $username = htmlspecialchars($data['username']);
-        $password = htmlspecialchars($data['password']);
-        $verify = password_verify($password, $pass);
+//     foreach ($user as $row) {
+//         $pass = $row['password'];
+//     }
 
-        $sql_login = $conn->query(
-            "SELECT * FROM user WHERE username = '$username' AND password = '$password_hash'"
-        );
+//     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//         $username = htmlspecialchars($data['username']);
+//         $password = htmlspecialchars($data['password']);
+//         $verify = password_verify($password, $pass);
 
-        // cek username
-        if ($verify) {
-            $_SESSION['username'] = $data['username'];
-            $_SESSION['password'] = $data['password'];
-            header('Location: ../index.php');
-        } else {
-            header('location: login.php?gagal');
-        }
-    }
-}
+//         $sql_login = $conn->query(
+//             "SELECT * FROM user WHERE username = '$username' AND password = '$password_hash'"
+//         );
+
+//         // cek username
+//         if ($verify) {
+//             $_SESSION['username'] = $data['username'];
+//             $_SESSION['password'] = $data['password'];
+//             header('Location: ../index.php');
+//         } else {
+//             header('location: login.php?gagal');
+//         }
+//     }
+// }
+
 ?>
