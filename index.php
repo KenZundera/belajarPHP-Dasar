@@ -4,15 +4,54 @@ require 'php/functions.php';
 
 ob_start();
 session_start();
-if (!isset($_SESSION['username'])) {
+
+// Jika session login tidak ada maka kembali ke halaman login
+if (!isset($_SESSION['login'])) {
     header('location: php/login.php');
+    exit();
 }
 
 //  var global user session
 $id_user = $_SESSION['username'];
 
+// if (isset($_COOKIE['success'])) {
+//     echo "<script>
+//             alert('Login berhasil');
+//          </script>";
+// } else {
+//     echo "<script>
+//             alert('Login gagal');
+//          </script>";
+// }
+
+// konfigurasi pagination
+$jumlahdataperhalaman = 10;
+$totaldata = count(query('SELECT * FROM biodata_xiirpl3'));
+$jumlahhalaman = ceil($totaldata / $jumlahdataperhalaman);
+if (isset($_GET['halaman'])) {
+    $halamanberapa = $_GET['halaman'];
+} else {
+    $halamanberapa = 1;
+}
+
+$halaman = isset($_GET['halaman']) ? (int) $_GET['halaman'] : 1;
+
+// deskripsikan bisa pakai keduanya. (halaman dan tidak ada)
+$awaldata = $jumlahdataperhalaman * $halamanberapa - $jumlahdataperhalaman;
+
+$Previous = $halaman - 1;
+$Next = $halaman + 1;
+
+$halamanawal =
+    $halaman > 1 ? $halaman * $jumlahdataperhalaman - $jumlahdataperhalaman : 0;
+
 // ambil data atau query data siswa
-$siswa = query('SELECT * FROM biodata_xiirpl3 ORDER BY nama ASC');
+$siswa = query(
+    'SELECT * FROM biodata_xiirpl3 ORDER BY nama ASC LIMIT ' .
+        $awaldata .
+        ',' .
+        $jumlahdataperhalaman
+);
 
 // tombol cari ditekan
 if (isset($_POST['cari'])) {
@@ -53,7 +92,7 @@ if (isset($_POST['cari'])) {
             border-radius: 0.375rem;
         }
         .header-m {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
         .kiri-form {
             float: right;
@@ -111,7 +150,7 @@ if (isset($_POST['cari'])) {
 
         <!-- if session login is true  -->
         <?php if (isset($_SESSION['username'])) { ?>
-            <a href="php/logout.php" class="tbl-hapus kiri-form" role="button">Logout</a>
+            <a href="php/logout.php" class="tbl-hapus kiri-form" role="button" onclick="return confirm('Yakin?');">Logout</a>
             <div class="username kiri-form">
                 <?= $_SESSION['username'] ?>
             </div>
@@ -119,14 +158,14 @@ if (isset($_POST['cari'])) {
             <a href="php/registrasi.php" class="tbl-tambah kiri-form" role="button">Registrasi</a>
             <a href="php/login.php" class="tbl-tambah kiri-form" role="button">Login</a>
         <?php } ?>
+    
     </form>
-
-
+    
     <!-- make show table php -->
     <?php
     $sql = 'SELECT * FROM biodata_xiirpl3 ORDER BY no_hp ASC';
     $result = $conn->query($sql);
-    $i = 1;
+    $i = $halamanawal + 1;
     ?>
     <div id="container1">
         <table class="" cellpadding="15" cellspacing="0">
@@ -172,7 +211,27 @@ if (isset($_POST['cari'])) {
         </table>
     </div>
 
-    
+    <div class="pagination-flex">
+        <div class="pagination">
+                <ul class="page-list">
+                <li class="page-item">
+                    <a class="page-link" <?php if ($halaman > 1) {
+                        echo "href='?halaman=$Previous'";
+                    } ?>>Previous</a>
+                    </li>
+                    <?php for ($i = 1; $i <= $jumlahhalaman; $i++): ?>
+                        <li class="page-item"><a class="page-link" href="?halaman=<?= $i ?>"><?= $i ?></a></li>
+                    <?php endfor; ?>
+                    <li class="page-item">
+                        <a  class="page-link" <?php if (
+                            $halaman < $jumlahhalaman
+                        ) {
+                            echo "href='?halaman=$Next'";
+                        } ?>>Next</a>
+                    </li>
+                </ul>
+            </div>
+    </div>
     <script src="js/search.js"></script>
 
     <!-- Link Jquery -->

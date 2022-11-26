@@ -1,7 +1,17 @@
 <?php
 require 'functions.php';
+
+ob_start();
+session_start();
+// Jika session login tidak ada maka kembali ke halaman login
+if (!isset($_SESSION['login'])) {
+    header('location: login.php');
+    exit();
+}
+
 //cek button tambah data apakah sudah disubmit atau belum
 if (isset($_POST['tambah'])) {
+    $_SESSION['login'] = true;
     if (tambah($_POST) > 0) {
         echo "<script>
 				alert('data berhasil ditambahkan!');
@@ -184,7 +194,7 @@ if (isset($_POST['tambah'])) {
         <li>
             <label for="kelas">Kelas :</label>
             <!-- <input type="text" name="kelas" id="kelas" required> -->
-            <select name="jenis_kelamin" id="jenis_kelamin">
+            <select name="kelas" id="kelas">
                 <option value="" disabled selected>Pilih Kelas</option>
                 <option value="X RPL">X RPL</option>
                 <option value="X ANM">X ANM</option>

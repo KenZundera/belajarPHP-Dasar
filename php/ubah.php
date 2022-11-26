@@ -1,10 +1,20 @@
 <?php
 require 'functions.php';
+
+ob_start();
+session_start();
+// Jika session login tidak ada maka kembali ke halaman login
+if (!isset($_SESSION['login'])) {
+    header('location: login.php');
+    exit();
+}
+
 $NIS = $_GET['nis'];
 
 $siswa = query("SELECT * FROM biodata_xiirpl3 WHERE nis = $NIS")[0];
 
 if (isset($_POST['ubah'])) {
+    $_SESSION['login'] = true;
     if (ubah($_POST) > 0) {
         echo "<script>
                     alert('data berhasil diubah');

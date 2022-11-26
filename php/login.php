@@ -4,7 +4,7 @@ session_start();
 
 include 'functions.php';
 
-// Cara Gwehj
+// Cara Gwehj iyakah? astaga ngerinya
 // if (isset($_POST['login'])) {
 //     if (login($_POST) > 0) {
 //         echo "<script>
@@ -27,12 +27,18 @@ if (isset($_POST['login'])) {
 
     // cek username
     if (mysqli_num_rows($result) === 1) {
-        // cek password
+        // $_SESSION['login'] = true;
         $row = mysqli_fetch_assoc($result);
+
+        // cek passwords
         if (password_verify($password, $row['password'])) {
             // set session
+            $_SESSION['login'] = true;
             $_SESSION['username'] = $row['username'];
             $_SESSION['password'] = $row['password'];
+            setcookie('username', $_POST['username'], time() + 120);
+            setcookie('password', $_POST['password'], time() + 120);
+            setcookie('success', true, time() + 10);
             header('Location: ../index.php');
         } else {
             header('location: login.php?gagal');
@@ -201,12 +207,19 @@ if (isset($_POST['login'])) {
         <ul>
             <li>
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Masukkan Username..." autocomplete="off" required autofocus>
+                <input type="text" name="username" id="username" placeholder="Masukkan Username..." autocomplete="off" required autofocus 
+                <?php if (isset($_COOKIE['username'])) { ?>
+                    value="<?= $_COOKIE['username'] ?>"
+                    <?php } ?> >
             </li>
 
             <li>
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Masukkan Password..." autocomplete="off" required>
+                <input type="password" name="password" id="password" placeholder="Masukkan Password..." autocomplete="off" required <?php if (
+                    isset($_COOKIE['password'])
+                ) { ?>
+                    value="<?= $_COOKIE['password'] ?>"
+                    <?php } ?> >
             </li>
 
             <div class="flex-footer">

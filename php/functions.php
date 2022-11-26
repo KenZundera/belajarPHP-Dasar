@@ -95,6 +95,10 @@ function registrasi($data)
     $username = strtolower(stripslashes($data['username']));
     $password = mysqli_real_escape_string($conn, $data['password']);
     $password2 = mysqli_real_escape_string($conn, $data['password2']);
+    $tgl_lahir = mysqli_real_escape_string($conn, $data['tgl_lahir']);
+    $email = mysqli_real_escape_string($conn, $data['email']);
+    $agama = mysqli_real_escape_string($conn, $data['agama']);
+    $jenis_kelamin = mysqli_real_escape_string($conn, $data['jenis_kelamin']);
 
     // cek username sudah ada atau belum
     $result = mysqli_query(
@@ -123,7 +127,7 @@ function registrasi($data)
     // tambahkan user baru ke database
     mysqli_query(
         $conn,
-        "INSERT INTO user VALUES('', '$username', '$passwordhash')"
+        "INSERT INTO user VALUES('', '$username', '$passwordhash', '$tgl_lahir', '$email', '$agama', '$jenis_kelamin')"
     );
     return mysqli_affected_rows($conn);
 }

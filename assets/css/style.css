@@ -168,7 +168,7 @@ form .error {
 table {
     width: 100%;
     color: #fff;
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
 }
 
 table tr {
@@ -317,6 +317,53 @@ input[type="number"] {
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
+input[type="email"] {
+    background-color: #2D3135;
+    color: #fff;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.375rem;
+    padding: 6px 12px 6px 12px;
+    width: 100%;
+    margin: 0px 4px 10px 0px;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input[type="date"] {
+    position: relative;
+    background-color: #2D3135;
+    color: #fff;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 0.375rem;
+    padding: 6px 12px 6px 12px;
+    width: 100%;
+    margin: 0px 4px 10px 0px;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: #fff;
+    background: none;
+    z-index: 1;
+  }
+  
+  input[type="date"]:before {
+    color: #fff;
+    background: none;
+    display: block;
+    font-family: 'FontAwesome';
+    content: '\f073';
+    /* This is the calendar icon in FontAwesome */
+    position: absolute;
+    top: 6px;
+    right: 15px;
+  }
+
 select {
     background-color: #2D3135;
     color: #fff;
@@ -341,4 +388,60 @@ select {
 header {
     margin: 0px 0px 0px 15px;
     
+}
+
+.pagination {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.page-item:last-child .page-link {
+    margin-left: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.pagination .page-list {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+}
+
+.pagination .page-list .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffffff;
+    background-color:#2D3135;
+    border: 1px solid #dee2e6;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.pagination .page-list .page-link:hover:not(.active) {
+    background-color: rgb(41, 41, 41);
+}
+
+.pagination-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    margin-bottom: 1.5rem;
 }

@@ -4,11 +4,17 @@ require 'functions.php';
 // ketika tombol register ditekan, proses fungsi registrasi
 if (isset($_POST['register'])) {
     if (registrasi($_POST) > 0) {
+        setcookie('username', $_POST['username'], time() + 120);
+        setcookie('password', $_POST['password'], time() + 120);
         echo "<script>
                 alert('user baru berhasil ditambahkan');
                 document.location.href = 'login.php';
               </script>";
     } else {
+        echo "<script>
+                alert('user baru berhasil ditambahkan');
+              </script>";
+
         echo mysqli_error($conn);
     }
 }
@@ -66,6 +72,7 @@ if (isset($_POST['register'])) {
             padding: 1.25rem;
             box-shadow: #fff 0 0 10px;
             margin-top: 7rem;
+            margin-bottom: 7rem;
         }
 
         form ul {
@@ -163,6 +170,30 @@ if (isset($_POST['register'])) {
             <li>
                 <label for="password2">Konfirmasi Password</label>
                 <input type="password" name="password2" id="password2" placeholder="Konfirmasi Password..." autocomplete="off" required>
+            </li>
+
+            <li>
+                <label for="tgl_lahir">Tanggal Lahir</label>
+                <input type="date" name="tgl_lahir" id="tgl_lahir" autocomplete="off" required>
+            </li>
+
+            <li>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Masukkan email anda..."autocomplete="off" required>
+            </li>
+
+            <li>
+                <label for="agama">Agama</label>
+                <input type="text" name="agama" id="agama" placeholder="Masukkan agama anda..." autocomplete="off" required>
+            </li>
+
+            <li>
+                <label for="jenis_kelamin">Jenis Kelamin</label>
+                <select name="jenis_kelamin" id="jenis_kelamin">
+                    <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                </select>
             </li>
             <br>
             <div class="flex-footer">

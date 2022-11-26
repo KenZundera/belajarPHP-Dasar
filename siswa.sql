@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Okt 2022 pada 05.19
+-- Waktu pembuatan: 08 Nov 2022 pada 04.09
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.0.14
 
@@ -89,15 +89,20 @@ INSERT INTO `biodata_xiirpl3` (`nis`, `nama`, `kelas`, `jenis_kelamin`, `alamat`
 CREATE TABLE `user` (
   `id_user` int(6) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `agama` varchar(20) NOT NULL,
+  `jenis_kelamin` enum('L','P','','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`) VALUES
-(1, 'admin', '$2y$10$0UVyF9AYfCnOKwKMOziBmeH0QXOKS5zoWjg0gJ3c0gsE7XgMvaaQC');
+INSERT INTO `user` (`id_user`, `username`, `password`, `tgl_lahir`, `email`, `agama`, `jenis_kelamin`) VALUES
+(1, 'tes', '$2y$10$GOOyLbb17HMxq5RXpcEQZuuZjazEUeaXlKB/iIQyqLfsdtr140BBa', '0000-00-00', 'tes@gmail.com', 'Islam', 'L'),
+(2, 'asd', '$2y$10$Vy5YwHSSAM9395Aq3X.KOu49/eE44XwQS/xdPC/SqJ21H3CVE6REy', '2022-10-27', 'tes@gmail.com', 'Islam', 'L');
 
 --
 -- Indexes for dumped tables
@@ -123,7 +128,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
